@@ -13,9 +13,19 @@ switch($Bbc->mod['task'])
     case 'list_edit':
         # script di sini (karena tidak ada comment setelah case maka opsi tidak akan muncul ketika create/edit menu di "Control Panel / Menu Manager")
         break;
-        case 'intern_location':
+    case 'intern_location':
         include 'intern_location.php';
+        break;
+    case 'criteria':
+        include 'criteria.php';
         break ;
+    case 'class':
+        include 'class.php';
+        break ;
+    case 'student':
+         include 'student.php';
+         break ;
+    
 
     default:
         echo 'Invalid action '.$Bbc->mod['task'].' has been received...';
