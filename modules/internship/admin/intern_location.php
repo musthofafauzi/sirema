@@ -9,11 +9,10 @@ $form->initAdd();
 $form->add->setLanguage();
 
 $form->add->addInput('name','text');
-$form->add->input->name->setTitle('Nama Tempat Magang');
+$form->add->input->name->setTitle('Nama Tempat Magang'); 
 
 $form->add->addInput('address','text');
 $form->add->input->address->setTitle('Alamat');
-// $form->add->input->address->setLanguage();
 
 $form->add->action();
 echo $form->add->getForm(); 

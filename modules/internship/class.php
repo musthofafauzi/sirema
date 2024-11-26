@@ -1,48 +1,41 @@
-<center><h2>Jurusan </h2></center>
+<br>
+<center><h2> Kelas </h2></center>
 
-<h4>Tambahkan jurusan</h4>
-    <?php 
-    ///input jurusan 
-    $form = _lib('pea',  'internship_major');
-    $form->initAdd();
-    // $form->add->setLanguage();
+<h4>Daftar Kelas</h4>
 
-    $form->add->addInput('name','text');
-    $form->add->input->name->setTitle('Nama Jurusan ');
-
-    $form->add->action();
-    echo $form->add->getForm(); 
-    ?> 
-
-<h4>Daftar jurusan</h4>
-
-    <?php  
-    ///tampil data jurusan
-    $no = 0;
-    $form = _lib('pea',  'internship_major');
+<?php  
+///tampil data kelas
+    $form = _lib('pea',  'internship_class');
     $form->initRoll("WHERE 1 ORDER BY id ASC"); // ORDER BY wajib digunakan demi keamanan
 
     // $form->roll->setLanguage();
     $form->roll->setSaveTool(true);
-    $form->roll->addInput('id','sqlplaintext');
-    $form->roll->input->id->setTitle('No');
-    $form->roll->input->id->setDisplayFunction('no');
-        function no($value)
-        {return ($value++);}
+    //tampilkan jurusan
+    $form->roll->addInput('major_id','sqlplaintext');
+    $form->roll->input->major_id->setTitle('Jurusan');
+    $form->roll->input->major_id->setDisplayFunction('major_name');
+    function major_name($value)
+    {
+        global $db;
+    $q = "SELECT `name` FROM `internship_major` WHERE `id`= $value"; 
+    $name = $db->getOne($q);
+        // pr('SELECT `name` FROM `internship_major` WHERE `id`= '.$value.'');die;
+        return $name;
+    };
+    //tampilkan nama kelas
     $form->roll->addInput('name','sqlplaintext');
-    $form->roll->input->name->setTitle('name');
+    $form->roll->input->name->setTitle('Kelas');
     // $form->roll->input->name->setLanguage();
 
     $form->roll->action();
     echo $form->roll->getForm();
     ?>
-<br><br>
-<center><h2> Kelas </h2></center>
 
+<br><br>
 <h4>Tambahkan kelas</h4>
 
     <?php 
-    ///input kelas
+///input kelas
     $form2 = _lib('pea',  'internship_class');
     $form2->initEdit();
     // $form2->add->setLanguage();
@@ -60,22 +53,5 @@
 
 
 
-<h4>Daftar Kelas</h4>
 
-<?php  
-    ///tampil data kelas
-    $form = _lib('pea',  'internship_class');
-    $form->initRoll("WHERE 1 ORDER BY id DESC"); // ORDER BY wajib digunakan demi keamanan
-
-    // $form->roll->setLanguage();
-    $form->roll->setSaveTool(true);
-
-    
-    $form->roll->addInput('name','sqlplaintext');
-    $form->roll->input->name->setTitle('name');
-    // $form->roll->input->name->setLanguage();
-
-    $form->roll->action();
-    echo $form->roll->getForm();
-    ?>
 
